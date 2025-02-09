@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 export function useDarkMode() {
   const [isDark, setIsDark] = useState(() => {
     const savedTheme = localStorage.getItem("theme");
-    return savedTheme ? JSON.parse(savedTheme) : false;
+    return savedTheme ? JSON.parse(savedTheme) : true; // Default to dark mode
   });
 
   useEffect(() => {
@@ -15,5 +15,5 @@ export function useDarkMode() {
     }
   }, [isDark]);
 
-    return [isDark, setIsDark];
-  }
+  return [isDark, setIsDark];
+}
