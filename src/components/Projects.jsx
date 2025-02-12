@@ -4,6 +4,7 @@ import un from "../assets/uniwell.png";
 import itp from "../assets/itp.png";
 import hs from "../assets/hs.png";
 import tr from "../assets/tr.png";
+import Em from "../assets/Em.png";
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -59,7 +60,7 @@ const Projects = () => {
       title: "Employee Management System",
       description: "A Java-based web application designed to streamline employee management, including schedule management and payroll processing.",
       tech: ["Java", "MySQL"],
-      image: "https://via.placeholder.com/300x200",
+      image: Em,
       github: "https://github.com/your-employee-repo",
       category: "desktop"
     }
