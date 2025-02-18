@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Code2, Palette, Database, Wrench, CheckCircle2, Star, Zap, AlertCircle } from 'lucide-react';
+import { Code2, Palette, Database, Wrench, CheckCircle2, Star } from 'lucide-react';
 
 const Skills = () => {
   const [activeCategory, setActiveCategory] = useState(null);
@@ -17,6 +17,54 @@ const Skills = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  // Mapping for Tailwind color classes
+  const colorClasses = {
+    blue: {
+      iconContainer: 'bg-blue-100 dark:bg-blue-900/30',
+      icon: 'text-blue-600 dark:text-blue-400',
+      hoverHeader: 'group-hover:text-blue-600 dark:group-hover:text-blue-400',
+      skillItemHoverBg: 'hover:bg-blue-50 dark:hover:bg-blue-900/20',
+      skillItemStar: 'text-blue-500',
+      cornerGradientFrom: 'from-blue-500/20',
+      cornerGradientTo: 'to-blue-500/40',
+      cornerHoverFrom: 'group-hover:from-blue-500/40',
+      cornerHoverTo: 'group-hover:to-blue-500/60',
+    },
+    purple: {
+      iconContainer: 'bg-purple-100 dark:bg-purple-900/30',
+      icon: 'text-purple-600 dark:text-purple-400',
+      hoverHeader: 'group-hover:text-purple-600 dark:group-hover:text-purple-400',
+      skillItemHoverBg: 'hover:bg-purple-50 dark:hover:bg-purple-900/20',
+      skillItemStar: 'text-purple-500',
+      cornerGradientFrom: 'from-purple-500/20',
+      cornerGradientTo: 'to-purple-500/40',
+      cornerHoverFrom: 'group-hover:from-purple-500/40',
+      cornerHoverTo: 'group-hover:to-purple-500/60',
+    },
+    green: {
+      iconContainer: 'bg-green-100 dark:bg-green-900/30',
+      icon: 'text-green-600 dark:text-green-400',
+      hoverHeader: 'group-hover:text-green-600 dark:group-hover:text-green-400',
+      skillItemHoverBg: 'hover:bg-green-50 dark:hover:bg-green-900/20',
+      skillItemStar: 'text-green-500',
+      cornerGradientFrom: 'from-green-500/20',
+      cornerGradientTo: 'to-green-500/40',
+      cornerHoverFrom: 'group-hover:from-green-500/40',
+      cornerHoverTo: 'group-hover:to-green-500/60',
+    },
+    orange: {
+      iconContainer: 'bg-orange-100 dark:bg-orange-900/30',
+      icon: 'text-orange-600 dark:text-orange-400',
+      hoverHeader: 'group-hover:text-orange-600 dark:group-hover:text-orange-400',
+      skillItemHoverBg: 'hover:bg-orange-50 dark:hover:bg-orange-900/20',
+      skillItemStar: 'text-orange-500',
+      cornerGradientFrom: 'from-orange-500/20',
+      cornerGradientTo: 'to-orange-500/40',
+      cornerHoverFrom: 'group-hover:from-orange-500/40',
+      cornerHoverTo: 'group-hover:to-orange-500/60',
+    }
+  };
 
   const skills = {
     'Programming Languages': {
@@ -123,12 +171,12 @@ const Skills = () => {
               
               <div className="relative">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className={`p-3 bg-${color}-100 dark:bg-${color}-900/30 rounded-lg transform transition-all duration-500 group-hover:scale-110 group-hover:rotate-6`}>
-                    <div className={`text-${color}-600 dark:text-${color}-400 animate-bounce`}>
+                  <div className={`p-3 ${colorClasses[color].iconContainer} rounded-lg transform transition-all duration-500 group-hover:scale-110 group-hover:rotate-6`}>
+                    <div className={`${colorClasses[color].icon} animate-bounce`}>
                       {icon}
                     </div>
                   </div>
-                  <h3 className={`text-xl font-semibold text-gray-900 dark:text-white group-hover:text-${color}-600 dark:group-hover:text-${color}-400 transition-colors`}>
+                  <h3 className={`text-xl font-semibold text-gray-900 dark:text-white ${colorClasses[color].hoverHeader} transition-colors`}>
                     {category}
                   </h3>
                 </div>
@@ -140,11 +188,11 @@ const Skills = () => {
                       onMouseEnter={() => setHoveredSkill(skill.name)}
                       onMouseLeave={() => setHoveredSkill(null)}
                       className={`flex items-center justify-between gap-2 bg-gray-50 dark:bg-gray-700/50 px-4 py-2 rounded-lg transition-all duration-300
-                        transform hover:scale-105 hover:bg-${color}-50 dark:hover:bg-${color}-900/20
+                        transform hover:scale-105 ${colorClasses[color].skillItemHoverBg}
                         ${activeCategory === category ? 'translate-x-2' : ''}`}
                     >
                       <div className="flex items-center gap-2">
-                        <CheckCircle2 className={`w-4 h-4 text-${color}-500 transition-all duration-300 ${
+                        <CheckCircle2 className={`w-4 h-4 ${colorClasses[color].skillItemStar} transition-all duration-300 ${
                           hoveredSkill === skill.name ? 'opacity-100 rotate-12' : 'opacity-0'
                         }`} />
                         <span className="font-medium text-gray-800 dark:text-gray-200">{skill.name}</span>
@@ -158,7 +206,7 @@ const Skills = () => {
                             size={12}
                             className={`transition-all duration-300 ${
                               i < Math.floor(skill.level / 20)
-                                ? `text-${color}-500 ${hoveredSkill === skill.name ? 'scale-125' : ''}`
+                                ? `${colorClasses[color].skillItemStar} ${hoveredSkill === skill.name ? 'scale-125' : ''}`
                                 : 'text-gray-300'
                             }`}
                             style={{ transitionDelay: `${i * 50}ms` }}
@@ -173,8 +221,8 @@ const Skills = () => {
               {/* Animated Corner Decoration */}
               <div className="absolute top-0 right-0 w-16 h-16 overflow-hidden">
                 <div className={`absolute top-0 right-0 w-4 h-4 transform rotate-45 translate-x-1/2 -translate-y-1/2 
-                  bg-gradient-to-br from-${color}-500/20 to-${color}-500/40 
-                  group-hover:from-${color}-500/40 group-hover:to-${color}-500/60 
+                  bg-gradient-to-br ${colorClasses[color].cornerGradientFrom} ${colorClasses[color].cornerGradientTo} 
+                  ${colorClasses[color].cornerHoverFrom} ${colorClasses[color].cornerHoverTo} 
                   transition-all duration-500 group-hover:scale-150`} />
               </div>
             </div>

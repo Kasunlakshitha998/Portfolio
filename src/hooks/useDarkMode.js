@@ -3,7 +3,11 @@ import { useState, useEffect } from "react";
 export function useDarkMode() {
   const [isDark, setIsDark] = useState(() => {
     const savedTheme = localStorage.getItem("theme");
-    return savedTheme ? JSON.parse(savedTheme) : true; // Default to dark mode
+    try {
+      return savedTheme ? JSON.parse(savedTheme) : true; // Default to dark mode
+    } catch (e) {
+      return true; // Default to dark mode if JSON parsing fails
+    }
   });
 
   useEffect(() => {

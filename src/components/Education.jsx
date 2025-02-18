@@ -6,7 +6,7 @@ const education = [
     degree: "Bachelor of Science (Hons) in Information Specialized in Software Engineering",
     school: "Sri Lanka Institute of Information Technology (SLIIT), Malabe, Sri Lanka",
     year: "OCT 2022 - Present",
-    description: "Focusing on Software Engineering and Data Structures. Current GPA: 3.16/4.0",
+    description: "Focusing on Software Engineering and Data Structures.",
     type: "University"
   },
   {
